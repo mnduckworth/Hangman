@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Hangman Game</title>
+  </head>
+  <body>
+
+    <script>
+    var wins = 0;
+    var words = [
+    ["T", "r", "i", "v", "i", "u", "m"], 
+    ["S", "l", "i", "p", "k", "n", "o", "t"], 
+    ["D", "i", "s", "t", "u", "r", "b", "e", "d"], 
+    ["A", "v", "e", "n", "g", "e", "d", "S", "e", "v", "e", "n", "f", "o", "l", "d"], 
+    ["S", "t", "o", "n", "e", "S", "o", "u", "r"], 
+    ["L", "a", "m", "b", "o", "f", "G", "o", "d"], 
+    ["P", "a", "n", "t", "e", "r", "a"], 
+    ["M", "e", "t", "a", "l", "l", "i", "c", "a"]
+    ];
+    var guessesLeft = 13;
+    var word = words[Math.floor(Math.random() * words.length)];
+    var firstWord = words[word];
+    function getNewWord () {
+      firstWord = words[Math.floor(Math.random() * words.length)];
+      guessesLeft = 13;
+     }
+
+    document.onkeyup = function (event) {
+      var userGuess = event.key;
+     if (guessesLeft <= 0){
+      getNewWord();
+     }
+   	 else if (userGuess !== firstWord) {
+   	 	guessesLeft--;
+   	 }
+   	 else if (userGuess === firstWord){
+   	 	wins ++;
+   	 }
+
+     for (var i = 0; i < word.length; i++){
+
+     }
+
+   	 console.log(wins);
+   	 console.log(guessesLeft);
+   	 console.log(firstWord);
+
+
+
+
+
+    }
+    
+  
+    </script>
+    
+  </body>
+</html>
