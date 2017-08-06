@@ -7,48 +7,64 @@
   <body>
 
     <script>
+    var won = true;
     var wins = 0;
     var words = [
-    ["T", "r", "i", "v", "i", "u", "m"], 
-    ["S", "l", "i", "p", "k", "n", "o", "t"], 
-    ["D", "i", "s", "t", "u", "r", "b", "e", "d"], 
-    ["A", "v", "e", "n", "g", "e", "d", "S", "e", "v", "e", "n", "f", "o", "l", "d"], 
-    ["S", "t", "o", "n", "e", "S", "o", "u", "r"], 
-    ["L", "a", "m", "b", "o", "f", "G", "o", "d"], 
-    ["P", "a", "n", "t", "e", "r", "a"], 
-    ["M", "e", "t", "a", "l", "l", "i", "c", "a"]
+    ["t", "r", "i", "v", "i", "u", "m"], 
+    ["s", "l", "i", "p", "k", "n", "o", "t"], 
+    ["d", "i", "s", "t", "u", "r", "b", "e", "d"], 
+    ["a", "v", "e", "n", "g", "e", "d", "s", "e", "v", "e", "n", "f", "o", "l", "d"], 
+    ["s", "t", "o", "n", "e", "s", "o", "u", "r"], 
+    ["l", "a", "m", "b", "o", "f", "g", "o", "d"], 
+    ["p", "a", "n", "t", "e", "r", "a"], 
+    ["m", "e", "t", "a", "l", "l", "i", "c", "a"]
     ];
     var guessesLeft = 13;
+
     var word = words[Math.floor(Math.random() * words.length)];
-    var firstWord = words[word];
-    function getNewWord () {
-      firstWord = words[Math.floor(Math.random() * words.length)];
-      guessesLeft = 13;
-     }
+
+    var blanks = new Array (word.length);
+
+    for (var i = 0; i < blanks.length; i++){
+      blanks[i] = "_ ";
+    }
+
+    function nextWord () {
+      
+    }
 
     document.onkeyup = function (event) {
       var userGuess = event.key;
-     if (guessesLeft <= 0){
-      getNewWord();
-     }
-   	 else if (userGuess !== firstWord) {
-   	 	guessesLeft--;
-   	 }
-   	 else if (userGuess === firstWord){
-   	 	wins ++;
-   	 }
+
 
      for (var i = 0; i < word.length; i++){
+      if(word[i] === userGuess){
+        blanks[i] = userGuess + " ";
+        var wasCorrect = true;
+      }
+     }
 
+     if(!wasCorrect){
+      var wrongLetters = userGuess;
+      guessesLeft--;
+     }
+
+     var correctWord = true;
+     for (var i = 0; i < blanks.length; i++){
+      if(blanks[i] === "_ "){
+        correctWord = false;
+      }
+     }
+
+     if(correctWord){
+      wins++;
      }
 
    	 console.log(wins);
    	 console.log(guessesLeft);
-   	 console.log(firstWord);
-
-
-
-
+   	 console.log(word);
+     console.log(blanks);
+     console.log(wrongLetters);
 
     }
     
