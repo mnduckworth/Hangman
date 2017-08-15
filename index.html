@@ -92,7 +92,7 @@
       }
      }
 
-     if(!wasCorrect){
+     if(!wasCorrect !wrongLetters.includes(userGuess){
       wrongLetters.push(userGuess);
       document.getElementById("incorrect-letters").innerHTML = wrongLetters;
       guessesLeft--;
